@@ -1,0 +1,31 @@
+﻿CHALLENGE 2 — RESPONSE DISAPPEARS
+=================================
+Date: 2026-09-20
+
+Setup:
+- Sent sync request with operation_id = challenge2-test-op-001
+- Payload: UPDATE student 202203897 name to "Kelvin Mwape Challenge2"
+
+Test sequence:
+1. Client sent request, server applied change, server killed before response returned
+2. MySQL confirmed: students.version incremented, operation_receipts has 1 row
+3. Server restarted
+4. Client sent EXACT same request again (same operation_id, same payload)
+5. Server returned stored result from operation_receipts — no duplicate effect
+
+Verification:
+- operation_receipts row count for challenge2-test-op-001: 1
+- student version after retry: 2 (not 3)
+- Server rejected operation_id reuse with different payload: OPERATION_ID_REUSED
+
+Rule enforced:
+operation_id is PRIMARY KEY in operation_receipts.
+payload_hash is stored with each receipt.
+On retry:
+  - Same operation_id + same payload_hash -> return stored result
+  - Same operation_id + different payload_hash -> 409 OPERATION_ID_REUSED
+  - New operation_id -> apply change and insert new receipt
+
+Why this prevents duplicate effects:
+Even if the response is lost, the client's retry finds the stored receipt
+and gets the same result without re-applying the mutation.
