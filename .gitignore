@@ -1,0 +1,29 @@
+# Node.js
+node_modules/
+npm-debug.log
+*.log
+
+# Environment
+.env
+.env.local
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/.idea/
+android/local.properties
+*.apk
+*.iml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+*.pem
+*.key
