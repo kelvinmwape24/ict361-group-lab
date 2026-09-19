@@ -1,0 +1,18 @@
+﻿CHALLENGE 1 — TWO PHONES REQUEST LAST PLACE
+==========================================
+Date: 2026-09-20
+Starting state: G01 has 14 members (1 slot free)
+Two simultaneous POST /students/:id/assign requests fired from two PowerShell windows
+
+Request 1 (Test Student One): success = true
+Request 2 (Test Student Two): error = GROUP_FULL
+
+Final G01 count: 15
+
+Rule enforced: MySQL transaction with SELECT ... FOR UPDATE on lab_groups row
+This locks the group row so the second transaction waits, sees count=15, and rejects.
+
+Why SQL-only count would fail:
+- If count were checked in Node.js only (not in SQL), two requests could both read count=14
+- Both would then try to UPDATE, resulting in 16 members
+- The FOR UPDATE lock ensures only one transaction reads+updates at a time
