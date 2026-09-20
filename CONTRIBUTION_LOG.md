@@ -15,7 +15,7 @@
 | Backend / Database | Kelvin Mwape, Collins Chanda, Ben Chola | Node.js, MySQL, API |
 | UI / UX | Salima Banda, Racheal Daka, Mapalo Chilufya | Wireframes, accessibility |
 | Android Architecture | Mordecai Salim Traore, Lamin Traore, Chibesa Mumbi | Activities, ViewModels |
-| Local Storage / Sync | Mbasela Fabian, Mainza Muunda, Agrippa C. Hamasukwa | Room, WorkManager |
+| Local Storage / Sync | Collins Chanda, Mapalo Chilufya, Raccheal Daka | Room, WorkManager |
 | Testing / Integration | Kansamba Auxiria, Katanga Miti | API tests, evidence |
 
 ---
