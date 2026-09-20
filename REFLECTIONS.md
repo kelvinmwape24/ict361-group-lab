@@ -6,7 +6,7 @@ Each member records:
 
 ---
 
-## Kelvin Mwape — 202203897
+## Kelvin Mwape — 202203897 (Backend / DB)
 
 **Concept learned:**
 MySQL transactions with SELECT ... FOR UPDATE prevent race conditions when two clients request the last slot in a group. By locking the group row inside BEGIN ... COMMIT, the second request waits and then sees the updated count, correctly returning GROUP_FULL.
@@ -16,130 +16,144 @@ The package.json file got overwritten with JavaScript code from db.js, causing n
 
 ---
 
-## Salima Banda — 202305732
+## Kansamba Auxiria — 202206607 (Backend / DB)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Kansamba)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Kansamba)
 
 ---
 
-## Mapalo Chilufya — 202405943
+## Edwin Makuyu — 202408031 (Backend / DB)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Edwin)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Edwin)
 
 ---
 
-## Mordecai Salim Traore — 202403846
+## Katanga Miti — 202403552 (UI / UX)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Katanga)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Katanga)
 
 ---
 
-## Lamin Traore — 202403844
+## Mbasela Fabian — 202404688 (UI / UX)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Mbasela)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Mbasela)
 
 ---
 
-## Mbasela Fabian — 202404688
+## Ben Chola — 202404172 (UI / UX)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Ben)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Ben)
 
 ---
 
-## Chibesa Mumbi — 202001699
+## Agrippa C. Hamasukwa — 202403019 (Android Architecture)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Agrippa)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Agrippa)
 
 ---
 
-## Mainza Muunda — 202401150
+## Mainza Muunda — 202401150 (Android Architecture)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Mainza)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Mainza)
 
 ---
 
-## Agrippa C. Hamasukwa — 202403019
+## Chibesa Mumbi — 202001699 (Android Architecture)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Chibesa)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Chibesa)
 
 ---
 
-## Racheal Daka — 202303375
+## Collins Chanda — 202204674 (Local Storage / Sync)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Collins)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Collins)
 
 ---
 
-## Kansamba Auxiria — 202206607
+## Mordecai Salim Traore — 202403846 (Local Storage / Sync)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Mordecai)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Mordecai)
 
 ---
 
-## Collins Chanda — 202203846
+## Mapalo Chilufya — 202405943 (Local Storage / Sync)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Mapalo)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Mapalo)
 
 ---
 
-## Katanga Miti — 202403552
+## Salima Banda — 202305732 (Testing / Integration)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Salima)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Salima)
 
 ---
 
-## Ben Chola — 202404172
+## Lamin Traore — 202403844 (Testing / Integration)
 
 **Concept learned:**
-(To be filled)
+(To be filled by Lamin)
 
 **Bug solved:**
-(To be filled)
+(To be filled by Lamin)
+
+---
+
+## Racheal Daka — 202303375 (Testing / Integration)
+
+**Concept learned:**
+(To be filled by Racheal)
+
+**Bug solved:**
+(To be filled by Racheal)
+
+---
+
+**Last updated:** 2026-09-20 by Kelvin Mwape
