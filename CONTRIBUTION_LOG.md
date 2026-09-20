@@ -15,8 +15,8 @@
 | Backend / Database | Kelvin Mwape, , Ben Chola | Node.js, MySQL, API |
 | UI / UX | Salima Banda, ,  | Wireframes, accessibility |
 | Android Architecture | Mordecai Salim Traore, Lamin Traore, Chibesa Mumbi | Activities, ViewModels |
-| Local Storage / Sync | Collins Chanda, Mapalo Chilufya, Raccheal Daka | Room, WorkManager |
-| Testing / Integration | Kansamba Auxiria, Katanga Miti | API tests, evidence |
+| Local Storage / Sync | Collins Chanda, Mapalo Chilufya, Mordecai Salim Traore | Room, WorkManager |
+| Testing / Integration | Kansamba Auxiria, Katanga Miti,Racheal Daka | API tests, evidence |
 
 ---
 
@@ -35,9 +35,10 @@
 | 9 | Chibesa Mumbi | 202001699 | Android Arch | (to fill) | | |
 | 10 | collins chanda | 202204674 | Storage / Sync | (to fill) | | |
 | 11 | Mapalo Chilufya | 202405943  | Storage / Sync | (to fill) | | |
-| 12 | Racheal Daka |  | Storage / Sync | (to fill) | | |
+| 12 | Mordecai Salim Traore | 202403846| Storage / Sync | (to fill) | | |
 | 13 | Kansamba Auxiria | 202206607 | Testing | (to fill) | | |
 | 14 | Katanga Miti | 202403552 | Testing | (to fill) | | |
+| 15 | Racheal Daka | 202303375 | Testing | (to fill) | | |
 
 ---
 
