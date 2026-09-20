@@ -33,7 +33,7 @@
 | 7 | Mordecai Salim Traore | 202403846 | Android Arch | (to fill) | | |
 | 8 | Lamin Traore | 202403844 | Android Arch | (to fill) | | |
 | 9 | Chibesa Mumbi | 202001699 | Android Arch | (to fill) | | |
-| 10 | collins chanda | 202204674 | Storage / Sync | (to fill) | | |
+| 10 | collins chanda | 202204674 | Storage / Sync | Set up Room, Retrofit/OkHttp, and WorkManager dependencies; created LocalStudentEntity and PendingOperationEntity Room entities; created LocalStudentDao (file: Local.java) and PendingOperationDao | 1d57238, 4fbf91f, b657ab8, d1bfb89| android/app/build.gradle.kts, android/app/src/main/java/zm/mu/ict361lab/entity/, android/app/src/main/java/zm/mu/ict361lab/dao/|
 | 11 | Mapalo Chilufya | 202405943  | Storage / Sync | (to fill) | | |
 | 12 | Mordecai Salim Traore | 202403846| Storage / Sync | (to fill) | | |
 | 13 | Kansamba Auxiria | 202206607 | Testing | (to fill) | | |
