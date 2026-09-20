@@ -33,9 +33,9 @@
 | 7 | Mordecai Salim Traore | 202403846 | Android Arch | (to fill) | | |
 | 8 | Lamin Traore | 202403844 | Android Arch | (to fill) | | |
 | 9 | Chibesa Mumbi | 202001699 | Android Arch | (to fill) | | |
-| 10 | Mbasela Fabian | 202404688 | Storage / Sync | (to fill) | | |
-| 11 | Mainza Muunda | 202401150 | Storage / Sync | (to fill) | | |
-| 12 | Agrippa C. Hamasukwa | 202403019 | Storage / Sync | (to fill) | | |
+| 10 | collins chanda | 202204674 | Storage / Sync | (to fill) | | |
+| 11 | Mapalo Chilufya | 202405943  | Storage / Sync | (to fill) | | |
+| 12 | Racheal Daka | 202303375 | Storage / Sync | (to fill) | | |
 | 13 | Kansamba Auxiria | 202206607 | Testing | (to fill) | | |
 | 14 | Katanga Miti | 202403552 | Testing | (to fill) | | |
 
