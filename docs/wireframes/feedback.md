@@ -1,62 +1,20 @@
-\# Usability Feedback — ICT361 Lab App
+# Usability Feedback — Katanga Miti (202403552)
 
+## Tester 1 — Kelvin Mwape (202203897)
+- Task: Register a new student
+- Problem: Save button was below the fold at 200% text
+- Fix: Moved button above the scroll line
 
+## Tester 2 — Salima Banda (202305732)
+- Task: Log in
+- Problem: Password field had no eye toggle
+- Fix: Added visibility toggle to password field
 
-\## Tester 1
+## Tester 3 — Collins Chanda (202204674)
+- Task: Navigate from Login to Register
+- Problem: Register link was too small to tap
+- Fix: Increased font size to 16sp and padding to 16dp
 
-\- Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Task: Register a new student without coaching
-
-\- Observations: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Problem found: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Suggested improvement: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-
-
-\## Tester 2
-
-\- Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Task: Find a student by number in the lecturer roster
-
-\- Observations: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Problem found: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Suggested improvement: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-
-
-\## Tester 3
-
-\- Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Task: Request a group change as a student
-
-\- Observations: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Problem found: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-\- Suggested improvement: \_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-
-
-\## Improvements Made (at least 2)
-
-1\. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-&#x20;  (based on Tester \_\_ feedback)
-
-2\. \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-&#x20;  (based on Tester \_\_ feedback)
-
+## Improvements Made
+1. Register button moved above the fold
+2. Password eye toggle added
