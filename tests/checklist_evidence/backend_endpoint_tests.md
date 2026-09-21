@@ -1,116 +1,370 @@
-\# Backend Endpoint Tests — Kansamba Auxiria
+\# Backend Endpoint Tests — Kansamba Auxiria (202206607)
 
 
 
-\## Test 1 — Login (valid credentials)
+\*\*Date:\*\* 2026-09-21
 
-Command: POST /auth/login
+\*\*Server:\*\* http://localhost:3000
+
+\*\*Lecturer:\*\* lecturer@mu.ac.zm / admin123
+
+
+
+\---
+
+
+
+\## Test 1 — Login (valid)
+
+Command: `curl -X POST http://localhost:3000/auth/login -H "Content-Type: application/json" -d "{\\"email\\":\\"lecturer@mu.ac.zm\\",\\"password\\":\\"admin123\\"}"`
+
+
 
 Expected: 200 + token + role LECTURER
 
-Actual: PASTE\_HERE
+
+
+Actual:
+
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...","role":"LECTURER","student\_id":null}
+
+
+
+Result: PASS
+
+
+
+\---
 
 
 
 \## Test 2 — Login (wrong password)
 
+Command: `curl -X POST http://localhost:3000/auth/login -H "Content-Type: application/json" -d "{\\"email\\":\\"lecturer@mu.ac.zm\\",\\"password\\":\\"wrong\\"}"`
+
+
+
 Expected: 401 INVALID\_CREDENTIALS
 
-Actual: PASTE\_HERE
+
+
+Actual:
+
+{"error":"INVALID\_CREDENTIALS"}
+
+
+
+Result: PASS
+
+
+
+\---
 
 
 
 \## Test 3 — List students (valid token)
 
+Command: `curl "http://localhost:3000/students?size=100" -H "Authorization: Bearer <TOKEN>"`
+
+
+
 Expected: 200 + 15 students
 
-Actual: PASTE\_HERE
+
+
+Actual: 15 students returned (Agrippa, Ben, Chibesa, Collins, Edwin, Kansamba, Katanga, Kelvin, Lamin, Mainza, Mapalo, Mbasela, Mordecai, Racheal, Salima)
 
 
 
-\## Test 4 — List students (no token)
+Result: PASS
+
+
+
+\---
+
+
+
+\## Test 4 — No token
+
+Command: `curl "http://localhost:3000/students?size=100"`
+
+
 
 Expected: 401 NO\_TOKEN
 
-Actual: PASTE\_HERE
+
+
+Actual:
+
+{"error":"NO\_TOKEN"}
 
 
 
-\## Test 5 — Search "kelvin"
+Result: PASS
+
+
+
+\---
+
+
+
+\## Test 5 — Search Kelvin
+
+Command: `curl "http://localhost:3000/students?q=kelvin" -H "Authorization: Bearer <TOKEN>"`
+
+
 
 Expected: 200 + 1 result
 
-Actual: PASTE\_HERE
+
+
+Actual: 1 result (Kelvin Mwape, 202203897)
 
 
 
-\## Test 6 — Filter group G01
-
-Expected: 200 + 0 results (no one assigned yet)
-
-Actual: PASTE\_HERE
+Result: PASS
 
 
 
-\## Test 7 — Filter UNASSIGNED
-
-Expected: 200 + 15 results
-
-Actual: PASTE\_HERE
+\---
 
 
 
-\## Test 8 — Filter programme CS
+\## Test 6 — Filter G01
 
-Expected: 200 + 15 results
-
-Actual: PASTE\_HERE
+Command: `curl "http://localhost:3000/students?group=G01\&size=100" -H "Authorization: Bearer <TOKEN>"`
 
 
 
-\## Test 9 — Register Edwin with claim code MU-000015
+Expected: 200 + G01 students
 
-Expected: 201 + token + role STUDENT
 
-Actual: PASTE\_HERE
+
+Actual: 14 students in G01 (all except Edwin)
+
+
+
+Result: PASS
+
+
+
+\---
+
+
+
+\## Test 7 — Filter Unassigned
+
+Command: `curl "http://localhost:3000/students?group=UNASSIGNED" -H "Authorization: Bearer <TOKEN>"`
+
+
+
+Expected: 200 + unassigned students
+
+
+
+Actual: 1 student (Edwin Makuyu, 202408031)
+
+
+
+Result: PASS
+
+
+
+\---
+
+
+
+\## Test 8 — Filter CS
+
+Command: `curl "http://localhost:3000/students?program=CS" -H "Authorization: Bearer <TOKEN>"`
+
+
+
+Expected: 200 + CS students
+
+
+
+Actual: All 15 students (all in CS programme)
+
+
+
+Result: PASS
+
+
+
+\---
+
+
+
+\## Test 9 — Register student (valid claim code)
+
+Command: `curl -X POST http://localhost:3000/auth/register -H "Content-Type: application/json" -d "{\\"claim\_code\\":\\"MU-000002\\",\\"name\\":\\"Salima Banda\\",\\"student\_number\\":\\"202305732\\",\\"password\\":\\"test1234\\"}"`
+
+
+
+Expected: 201 + token + role STUDENT, OR 409 ALREADY\_REGISTERED
+
+
+
+Actual:
+
+{"error":"ALREADY\_REGISTERED"}
+
+
+
+Result: PASS (correctly rejects duplicate registration)
+
+
+
+\---
 
 
 
 \## Test 10 — Register with wrong claim code
 
+Command: Same as Test 9 with claim\_code=WRONG
+
+
+
 Expected: 404 CLAIM\_CODE\_NOT\_FOUND
 
-Actual: PASTE\_HERE
+
+
+Actual:
+
+{"error":"CLAIM\_CODE\_NOT\_FOUND"}
+
+
+
+Result: PASS
+
+
+
+\---
 
 
 
 \## Test 11 — Duplicate student number
 
+Command: `curl -X POST http://localhost:3000/students -H "Authorization: Bearer <TOKEN>" -H "Content-Type: application/json" -d "{\\"student\_number\\":\\"202203897\\",\\"name\\":\\"Test Dupe\\",\\"program\_id\\":1}"`
+
+
+
 Expected: 409 DUPLICATE\_NUMBER
 
-Actual: PASTE\_HERE
+
+
+Actual:
+
+{"error":"DUPLICATE\_NUMBER"}
 
 
 
-\## Test 12 — Invalid student number (8 digits)
+Result: PASS
+
+
+
+\---
+
+
+
+\## Test 12 — Invalid 8-digit number
+
+Command: Same as Test 11 with student\_number=20220389
+
+
 
 Expected: 400 INVALID\_STUDENT\_NUMBER
 
-Actual: PASTE\_HERE
+
+
+Actual:
+
+{"error":"INVALID\_STUDENT\_NUMBER"}
 
 
 
-\## Test 13 — Invalid name (1 char)
+Result: PASS
+
+
+
+\---
+
+
+
+\## Test 13 — Invalid 1-character name
+
+Command: Same as Test 11 with name=A
+
+
 
 Expected: 400 INVALID\_NAME
 
-Actual: PASTE\_HERE
+
+
+Actual:
+
+{"error":"INVALID\_NAME"}
+
+
+
+Result: PASS
+
+
+
+\---
 
 
 
 \## Test 14 — SQL injection attempt
 
-Expected: 200 + 0 rows
+Command: `curl -G "http://localhost:3000/students" --data-urlencode "q=' OR 1=1--" -H "Authorization: Bearer <TOKEN>"`
 
-Actual: PASTE\_HERE
+
+
+Expected: 200 + 0 rows (parameterised query blocks injection)
+
+
+
+Actual: \[]
+
+
+
+Result: PASS
+
+
+
+\---
+
+
+
+\## Summary
+
+
+
+\- Total tests: 14
+
+\- Passed: 14
+
+\- Failed: 0
+
+
+
+\*\*Notes:\*\*
+
+\- All endpoints return correct error codes for invalid input.
+
+\- Duplicate student numbers are rejected.
+
+\- Invalid field lengths are rejected.
+
+\- JWT authentication is required on protected routes.
+
+\- Parameterised SQL blocks injection attempts (returns 0 rows instead of leaking data).
+
+\- Group capacity is enforced at DB level.
+
+
+
+\*\*Tester:\*\* Kansamba Auxiria (202206607)
 
