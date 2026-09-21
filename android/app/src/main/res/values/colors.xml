@@ -1,5 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <color name="mu_blue">#FF1B3A8C</color>
+    <color name="mu_blue_dark">#FF122A66</color>
+    <color name="mu_blue_light">#FFD7E0F6</color>
+    <color name="mu_red">#FFB3211F</color>
+    <color name="mu_amber">#FF8A5A00</color>
+    <color name="mu_green">#FF116B55</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
 </resources>

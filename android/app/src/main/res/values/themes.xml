@@ -1,9 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.ICT361Lab" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme.ICT361Lab" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/mu_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/mu_blue_light</item>
+        <item name="colorError">@color/mu_red</item>
+        <!-- Touch targets stay at least 48dp, and text scales with the system
+             setting: the app must stay usable at 200% text size. -->
+        <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="Theme.ICT361Lab" parent="Base.Theme.ICT361Lab" />
+    <style name="Widget.ICT361.Field" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+
+    <style name="Widget.ICT361.Button" parent="Widget.Material3.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
 </resources>

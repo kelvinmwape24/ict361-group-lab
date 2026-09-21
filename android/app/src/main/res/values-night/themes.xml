@@ -1,7 +1,8 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.ICT361Lab" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+<resources>
+    <style name="Theme.ICT361Lab" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/mu_blue_light</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorError">#FFFF8B80</item>
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

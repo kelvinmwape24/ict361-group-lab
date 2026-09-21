@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="8dp">
+
+    <!-- The id is what makes the platform save and restore what was typed. -->
+    <EditText
+        android:id="@+id/dialog_input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:inputType="number"
+        android:maxLength="9"
+        android:importantForAutofill="no"
+        android:autofillHints="" />
+</FrameLayout>
