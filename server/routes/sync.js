@@ -11,6 +11,7 @@ router.post('/', auth(), async (req, res) => {
   const { operation_id, type, payload, base_version } = req.body;
   const accountId = req.user.account_id;
 
+  // Challenge 2 — idempotency check
   const [existing] = await pool.query(
     'SELECT payload_hash, result_json FROM operation_receipts WHERE operation_id=?',
     [operation_id]
@@ -25,6 +26,7 @@ router.post('/', auth(), async (req, res) => {
   const conn = await pool.getConnection();
   try {
     await conn.beginTransaction();
+
     if (type === 'UPDATE') {
       const [rows] = await conn.query(
         'SELECT version FROM students WHERE student_id=? AND is_deleted=0 FOR UPDATE',
@@ -38,14 +40,38 @@ router.post('/', auth(), async (req, res) => {
         await conn.rollback();
         return res.status(409).json({ error: 'CONFLICT', current_version: rows[0].version });
       }
-      await conn.query(
-        'UPDATE students SET name=?, program_id=?, version=version+1 WHERE student_id=?',
-        [payload.name, payload.program_id, payload.student_id]
-      );
+
+      // Support student_number correction (lecturer only)
+      if (payload.student_number) {
+        if (!/^\d{9}$/.test(payload.student_number)) {
+          await conn.rollback();
+          return res.status(400).json({ error: 'INVALID_STUDENT_NUMBER' });
+        }
+        const [dupe] = await conn.query(
+          'SELECT 1 FROM students WHERE student_number=? AND student_id<>?',
+          [payload.student_number, payload.student_id]
+        );
+        if (dupe.length) {
+          await conn.rollback();
+          return res.status(409).json({ error: 'DUPLICATE_NUMBER' });
+        }
+        await conn.query(
+          'UPDATE students SET name=?, program_id=?, student_number=?, version=version+1 WHERE student_id=?',
+          [payload.name, payload.program_id, payload.student_number, payload.student_id]
+        );
+      } else {
+        await conn.query(
+          'UPDATE students SET name=?, program_id=?, version=version+1 WHERE student_id=?',
+          [payload.name, payload.program_id, payload.student_id]
+        );
+      }
+
       result = { success: true, new_version: base_version + 1 };
+
     } else if (type === 'ASSIGN') {
       const [groups] = await conn.query(
-        'SELECT capacity FROM lab_groups WHERE group_id=? FOR UPDATE', [payload.group_id]
+        'SELECT capacity FROM lab_groups WHERE group_id=? FOR UPDATE',
+        [payload.group_id]
       );
       const [count] = await conn.query(
         'SELECT COUNT(*) AS c FROM students WHERE group_id=? AND is_deleted=0 FOR UPDATE',

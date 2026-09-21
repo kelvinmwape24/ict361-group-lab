@@ -1,31 +1,57 @@
-﻿CHALLENGE 2 — RESPONSE DISAPPEARS
-=================================
+﻿CHALLENGE 2 — RESPONSE DISAPPEARS (VERIFIED)
+============================================
 Date: 2026-09-20
+Tester: Kelvin Mwape (202203897)
 
 Setup:
-- Sent sync request with operation_id = challenge2-test-op-001
-- Payload: UPDATE student 202203897 name to "Kelvin Mwape Challenge2"
+- operation_id = c2-test-op-001
+- Student: Kelvin Mwape (202203897), student_id = 44c5351c-b398-11f1-9b6a-c85309c0fe0a
+- Starting version: 2
 
-Test sequence:
-1. Client sent request, server applied change, server killed before response returned
-2. MySQL confirmed: students.version incremented, operation_receipts has 1 row
-3. Server restarted
-4. Client sent EXACT same request again (same operation_id, same payload)
-5. Server returned stored result from operation_receipts — no duplicate effect
+STEP 1 — First sync request
+Command:
+  curl -X POST http://localhost:3000/sync -H "Authorization: Bearer <TOKEN>" -H "Content-Type: application/json" -d "{\"operation_id\":\"c2-test-op-001\",\"type\":\"UPDATE\",\"payload\":{\"student_id\":\"44c5351c-b398-11f1-9b6a-c85309c0fe0a\",\"name\":\"Kelvin Mwape C2Test\",\"program_id\":1},\"base_version\":2}"
 
-Verification:
-- operation_receipts row count for challenge2-test-op-001: 1
-- student version after retry: 2 (not 3)
-- Server rejected operation_id reuse with different payload: OPERATION_ID_REUSED
+Response:
+  {"success":true,"new_version":3}
+
+STEP 2 — Retry with SAME operation_id + SAME payload
+Response:
+  {"success":true,"new_version":3}
+
+Result: Server returned the SAME response — did not apply the mutation twice.
+
+STEP 3 — Verify MySQL state after both requests
+Query:
+  SELECT COUNT(*) FROM operation_receipts WHERE operation_id='c2-test-op-001';
+Result: 1
+
+Query:
+  SELECT version FROM students WHERE student_number='202203897';
+Result: 3
+
+Only ONE receipt exists, and the version incremented only ONCE (from 2 to 3, not to 4).
+
+STEP 4 — Reuse operation_id with DIFFERENT payload
+Command:
+  curl -X POST http://localhost:3000/sync -H "Authorization: Bearer <TOKEN>" -H "Content-Type: application/json" -d "{\"operation_id\":\"c2-test-op-001\",\"type\":\"UPDATE\",\"payload\":{\"student_id\":\"44c5351c-b398-11f1-9b6a-c85309c0fe0a\",\"name\":\"Different Name\",\"program_id\":1},\"base_version\":3}"
+
+Response:
+  {"error":"OPERATION_ID_REUSED"}
 
 Rule enforced:
-operation_id is PRIMARY KEY in operation_receipts.
-payload_hash is stored with each receipt.
-On retry:
-  - Same operation_id + same payload_hash -> return stored result
-  - Same operation_id + different payload_hash -> 409 OPERATION_ID_REUSED
-  - New operation_id -> apply change and insert new receipt
+- operation_id is PRIMARY KEY in operation_receipts.
+- payload_hash stored with each receipt.
+- Same operation_id + same payload_hash -> return stored result (idempotent).
+- Same operation_id + different payload_hash -> 409 OPERATION_ID_REUSED.
+- New operation_id -> apply change and insert new receipt.
 
 Why this prevents duplicate effects:
-Even if the response is lost, the client's retry finds the stored receipt
-and gets the same result without re-applying the mutation.
+Even if the response is lost (network interrupted, server killed, client retry),
+the client's retry finds the stored receipt and returns the same result without
+re-applying the mutation. Only one record change occurs, and only one receipt exists.
+
+Verification:
+- operation_receipts row count for c2-test-op-001: 1
+- student version after retry: 3 (not 4)
+- Server rejected operation_id reuse with different payload: OPERATION_ID_REUSED

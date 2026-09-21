@@ -1,0 +1,56 @@
+CHALLENGE 3 — OFFLINE CHANGES BECOME OUTDATED (VERIFIED)
+========================================================
+Date: 2026-09-20
+Tester: Kelvin Mwape (202203897)
+
+SCENARIO 1 — Conflicting edits from two devices
+-----------------------------------------------
+Setup:
+- Both Device A and Device B read Kelvin's record at version 4
+- Both go offline and edit his name
+
+Device A edit (goes online first):
+Command:
+  curl -X POST http://localhost:3000/sync \
+    -H "Authorization: Bearer <TOKEN>" \
+    -H "Content-Type: application/json" \
+    -d "{\"operation_id\":\"c3-device-A-edit\",\"type\":\"UPDATE\",\"payload\":{\"student_id\":\"44c5351c-b398-11f1-9b6a-c85309c0fe0a\",\"name\":\"Kelvin Mwape Device A\",\"program_id\":1},\"base_version\":4}"
+
+Response:
+  {"success":true,"new_version":5}
+
+Device B edit (with same base_version=4):
+Response:
+  {"error":"CONFLICT","current_version":5}
+
+MySQL verification:
+SELECT name, version FROM students WHERE student_number='202203897';
+Result: Kelvin Mwape Device A | 5
+
+Rule enforced:
+The /sync endpoint compares incoming base_version with the current version
+inside a transaction with SELECT ... FOR UPDATE. On mismatch, it returns
+409 CONFLICT with the current server version so the client can refetch
+and show a review screen — no silent overwrite.
+
+SCENARIO 2 — Deleted student cannot be resurrected
+--------------------------------------------------
+Setup:
+- Lecturer soft-deletes Katanga Miti (student_number 202403552)
+- An offline edit for Katanga is submitted with his old base version
+
+Response:
+  {"error":"STUDENT_DELETED"}
+
+Rule enforced:
+The /sync UPDATE path first checks is_deleted=1. If found, it rejects the
+operation with STUDENT_DELETED. A stale offline edit cannot recreate the
+deleted row.
+
+Summary of evidence:
+1. Device A edit: {"success":true,"new_version":5}
+2. Device B edit (stale base_version): {"error":"CONFLICT","current_version":5}
+3. Edit to deleted student: {"error":"STUDENT_DELETED"}
+4. MySQL confirms only Device A's edit applied
+
+Rule: Never silently overwrite another person's accepted work.
