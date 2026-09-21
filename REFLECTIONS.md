@@ -1,4 +1,4 @@
-﻿# Individual Reflections — ICT361 Group Lab
+# Individual Reflections — ICT361 Group Lab
 
 Each member records:
 1. One concept learned during this lab
@@ -96,7 +96,17 @@ The package.json file got overwritten with JavaScript code from db.js, causing n
 
 ---
 
-## Collins Chanda — 202204674 (Local Storage / Sync)
+## Abel Simasiku — 202407015 (Android Architecture)
+
+**Concept learned:**
+(To be filled by Abel)
+
+**Bug solved:**
+(To be filled by Abel)
+
+---
+
+## Collins Chanda — 202204674 (Storage / Sync)
 
 **Concept learned:**
 (To be filled by Collins)
@@ -106,7 +116,7 @@ The package.json file got overwritten with JavaScript code from db.js, causing n
 
 ---
 
-## Mordecai Salim Traore — 202403846 (Local Storage / Sync)
+## Mordecai Salim Traore — 202403846 (Storage / Sync)
 
 **Concept learned:**
 (To be filled by Mordecai)
@@ -116,7 +126,7 @@ The package.json file got overwritten with JavaScript code from db.js, causing n
 
 ---
 
-## Mapalo Chilufya — 202405943 (Local Storage / Sync)
+## Mapalo Chilufya — 202405943 (Storage / Sync)
 
 **Concept learned:**
 (To be filled by Mapalo)
@@ -156,4 +166,4 @@ The package.json file got overwritten with JavaScript code from db.js, causing n
 
 ---
 
-**Last updated:** 2026-09-20 by Kelvin Mwape
+**Last updated:** 2026-09-21 by Kelvin Mwape
