@@ -1,138 +1,28 @@
 <resources>
-    <string name="app_name">ICT361 Lab</string>
-
-    <!-- Every visible string lives here. Activity A: no hard-coded text in layouts. -->
-
-    <!-- Sign in -->
-    <string name="title_sign_in">Sign in</string>
-    <string name="label_email">Email</string>
-    <string name="label_password">Password</string>
-    <string name="action_sign_in">Sign in</string>
-    <string name="action_register">I have a claim code — register</string>
-    <string name="hint_email">you@student.mu</string>
-
-    <!-- Register -->
-    <string name="title_register">Register</string>
-    <string name="label_claim_code">Claim code</string>
-    <string name="label_student_number">Student number</string>
-    <string name="label_full_name">Full name</string>
-    <string name="label_choose_password">Choose a password</string>
-    <string name="action_create_account">Create account</string>
-    <string name="help_claim_code">Your lecturer issues this code. It proves the profile is yours.</string>
-    <string name="help_student_number">Nine digits, exactly as the university issued it.</string>
-    <string name="msg_draft_saved">Saved as a draft. Finish signing up when you are back online.</string>
-    <string name="msg_draft_restored">Your saved draft has been restored.</string>
-
-    <!-- Profile -->
-    <string name="title_my_profile">My profile</string>
-    <string name="label_programme">Programme</string>
-    <string name="label_lab_group">Lab group</string>
-    <string name="label_occupancy">Group occupancy</string>
-    <string name="label_unassigned">Unassigned</string>
-    <string name="action_edit_details">Edit my details</string>
-    <string name="action_request_group">Request a group</string>
-    <string name="action_request_correction">Request a number correction</string>
-    <string name="action_sync_status">Sync status</string>
-    <string name="action_sign_out">Sign out</string>
-    <string name="fmt_occupancy">%1$d of %2$d places taken</string>
-
-    <!-- Edit -->
-    <string name="title_edit_details">Edit my details</string>
-    <string name="action_save">Save</string>
-    <string name="action_cancel">Cancel</string>
-    <string name="msg_saved_locally">Saved on this phone. It will sync when you are online.</string>
-
-    <!-- Roster -->
-    <string name="title_roster">Student roster</string>
-    <string name="hint_search">Search by name or student number</string>
-    <string name="label_filter_programme">Programme</string>
-    <string name="label_filter_group">Group</string>
-    <string name="filter_all">All</string>
-    <string name="action_add_student">Add student</string>
-    <string name="action_share_summary">Share group summary</string>
-    <string name="action_previous">Previous</string>
-    <string name="action_next">Next</string>
-    <string name="fmt_page">Page %1$d of %2$d · %3$d students</string>
-    <string name="msg_empty_roster">No students match these filters.</string>
-    <string name="msg_offline_cache">Offline — showing the students saved on this phone. The list may be incomplete.</string>
-    <string name="share_chooser_title">Share group summary</string>
-    <string name="fmt_share_line">%1$s: %2$d of %3$d</string>
-    <string name="share_header">ICT361 lab group occupancy</string>
-
-    <!-- Student editor (lecturer) -->
-    <string name="title_add_student">Add student</string>
-    <string name="title_edit_student">Edit student</string>
-    <string name="action_assign_group">Assign or transfer</string>
-    <string name="action_delete">Delete student</string>
-    <string name="confirm_delete_title">Delete this student?</string>
-    <string name="confirm_delete_body">The record is hidden, the account is disabled and the group place is released. The student number stays reserved.</string>
-    <string name="action_confirm_delete">Delete</string>
-    <string name="fmt_claim_code_issued">Claim code issued: %1$s</string>
-
-    <!-- Sync -->
-    <string name="title_sync">Sync status</string>
-    <string name="action_sync_now">Sync now</string>
-    <string name="msg_queue_empty">Nothing waiting to sync.</string>
-    <string name="status_saved_local">Saved locally</string>
-    <string name="status_pending">Pending</string>
-    <string name="status_syncing">Syncing</string>
-    <string name="status_synced">Synced</string>
-    <string name="status_action_required">Action required</string>
-    <string name="action_keep_mine">Keep my version</string>
-    <string name="action_discard">Discard my change</string>
-    <string name="label_server_version">On the server now</string>
-    <string name="label_your_change">Your unsent change</string>
-
-    <!-- Validation and errors -->
-    <string name="err_required">This field is required</string>
-    <string name="err_name_length">Use between 2 and 100 characters</string>
-    <string name="err_student_number">Enter exactly nine digits</string>
-    <string name="err_password_short">Use at least 6 characters</string>
-    <string name="err_email">Enter your email address</string>
-    <string name="err_invalid_credentials">That email and password do not match an account</string>
-    <string name="err_claim_not_found">No student matches that claim code and number</string>
-    <string name="err_already_registered">That student already has an account</string>
-    <string name="err_duplicate_number">Another student already has that number</string>
-    <string name="err_group_full">That group is full. You are still in your previous group.</string>
-    <string name="err_conflict">Someone else changed this record while you were offline</string>
-    <string name="err_student_deleted">This student was deleted. Your change was not applied.</string>
-    <string name="err_session_expired">Your session has ended. Sign in again.</string>
-    <string name="err_forbidden">You do not have access to that record</string>
-    <string name="err_offline">No connection. Your work is saved on this phone.</string>
-    <string name="err_server">The server could not be reached. Try again.</string>
-    <string name="err_request_pending">You already have a correction request waiting</string>
-
-    <!-- Content descriptions -->
-    <string name="cd_sync_state">Sync state</string>
-    <string name="cd_loading">Loading</string>
-
-    <!-- Added in fix pack 3: offline create, programmes as reference data,
-         group totals, and the conflict review screen. -->
-
-    <!-- Programmes come from the server, so the picker can be empty -->
-    <string name="err_programmes_unavailable">Programme list not downloaded yet. Connect once, then it works offline.</string>
-    <string name="label_programme_unknown">Not set</string>
-
-    <!-- Group totals on the roster -->
-    <string name="label_group_totals">Group occupancy</string>
-    <string name="fmt_group_total">%1$s %2$d/%3$d</string>
-    <string name="fmt_unassigned_total">Unassigned %1$d</string>
-
-    <!-- Offline create and delete -->
-    <string name="msg_student_saved_locally">Student saved on this phone. The claim code is issued when it syncs.</string>
-    <string name="msg_claim_code_pending">Claim code pending — it appears here once this student syncs.</string>
-    <string name="fmt_claim_code">Claim code: %1$s</string>
-    <string name="err_duplicate_number_local">A student on this phone already has that number.</string>
-    <string name="msg_deleted_never_synced">Removed. This student had not reached the server, so nothing was sent.</string>
-    <string name="msg_delete_queued">Deletion saved. It reaches the server on the next sync.</string>
-
-    <!-- Operation type labels in the sync queue -->
-    <string name="op_create">Add student</string>
-    <string name="op_update">Edit details</string>
-    <string name="op_assign">Group change</string>
-    <string name="op_delete">Delete student</string>
-
-    <!-- Conflict review -->
-    <string name="fmt_version">version %1$d</string>
-    <string name="msg_conflict_choose">Choose which version to keep.</string>
+    <string name="app_name">ICT361Lab</string>
+    <string name="create_account">Create Account</string>
+    <string name="join_portal">Join the student portal</string>
+    <string name="full_name">Full Name</string>
+    <string name="student_id">Student ID</string>
+    <string name="password">Password</string>
+    <string name="claim_code">Claim Code</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="sign_in_subtitle">Sign in to your account</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="register_now">Register Now</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="my_lab_group">My Lab Group</string>
+    <string name="quick_access">QUICK ACCESS</string>
+    <string name="recent_announcements">RECENT ANNOUNCEMENTS</string>
+    <string name="my_courses">My Courses</string>
+    <string name="sync_status">Sync Status</string>
+    <string name="sync_now">Sync Now</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_courses">Courses</string>
+    <string name="nav_events">Events</string>
+    <string name="nav_profile">Profile</string>
+    <string name="request_group_change">Request Group Change</string>
 </resources>

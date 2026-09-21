@@ -2,26 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/sync_now_button"
-        style="@style/Widget.ICT361.Button"
-        android:layout_margin="16dp"
-        android:text="@string/action_sync_now" />
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/queue_empty"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="24dp"
-        android:gravity="center"
-        android:text="@string/msg_queue_empty"
-        android:visibility="gone" />
+        android:text="@string/sync_status"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/queue_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-</LinearLayout>
+    <TextView
+        android:id="@+id/txtLastSync"
+
+cat > docs/wireframes/accessibility.md << 'EOF'
+# Accessibility Checklist — Ben Chola (202404172)
+
+## Labels
+- Every input has android:hint
+- All icons have contentDescription
+
+## Touch Targets
+- All buttons ≥ 48dp tall
+- Minimum 16dp padding between interactive elements
+
+## Text Size
+- Layouts work at 200% text size
+- ScrollView + wrap_content for flexibility
+
+## TalkBack
+- Back button labelled "Navigate up"
+- Every button has a clear label
+
+## Errors
+- Shown inline below fields
+- Preserve typed input after error
+
+## Back Navigation
+- Every Activity has an up arrow
+- Predictable parent chain
