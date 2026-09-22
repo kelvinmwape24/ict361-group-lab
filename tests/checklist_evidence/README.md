@@ -30,6 +30,16 @@ anywhere, copy the whole `reports` directory or they open unstyled.
 
 ## Current state
 
-Empty. 26 tests exist and pass under static verification; none of the runs are
-recorded yet, and `../test_plan.md` still has placeholder slots where results
-go.
+**JVM tests: run and recorded.** See `jvm_test_run_2026-09-22.md` — 17 tests,
+0 failures, on commit `90ea3b3`, with the full dependency version table the
+brief asks for.
+
+Still outstanding:
+
+| | |
+|---|---|
+| The 8 instrumented tests | need a phone over USB, or the `instrumented` job in `.github/workflows/android.yml` |
+| The four lifecycle screen recordings | rotation, process death, half-typed input, dialog survival |
+| The Challenge 1 run table | `../challenge_1_evidence/` records 1 run; the brief asks for 20 |
+| Screenshots of the six screens | from a real device |
+| `../test_plan.md` | still has placeholder slots where results go |
