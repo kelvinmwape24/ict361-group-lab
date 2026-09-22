@@ -33,8 +33,24 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      # This used to be android-actions/setup-android@v3. That action installs
+      # a default package list of "tools platform-tools", and Google has removed
+      # "tools" from the SDK repository, so sdkmanager exits 1 and the job dies
+      # before any code is touched:
+      #     Warning: Failed to find package 'tools'
+      #     Error: The process '.../sdkmanager' failed with exit code 1
+      # The action was also replacing the runner's preinstalled command-line
+      # tools with a downloaded copy. The runner already ships a working SDK
+      # with its licences accepted, so use that instead and drop the dependency.
       - name: Set up the Android SDK
-        uses: android-actions/setup-android@v3
+        run: |
+          SDK="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+          echo "ANDROID_HOME=$SDK"     >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK" >> "$GITHUB_ENV"
+          echo "$SDK/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
+          echo "$SDK/platform-tools"           >> "$GITHUB_PATH"
+          echo "Using SDK at $SDK"
+          ls "$SDK/licenses" || echo "no licences directory"
 
       # compileSdk 36 and build-tools 36.0.0, as app/build.gradle.kts declares.
       - name: Install the platform this project compiles against
@@ -94,8 +110,16 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      # Same reason as the build job above: the action asks sdkmanager for the
+      # removed "tools" package and fails. android-emulator-runner brings its
+      # own system image, so this only needs the SDK on PATH.
       - name: Set up the Android SDK
-        uses: android-actions/setup-android@v3
+        run: |
+          SDK="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+          echo "ANDROID_HOME=$SDK"     >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK" >> "$GITHUB_ENV"
+          echo "$SDK/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
+          echo "$SDK/platform-tools"           >> "$GITHUB_PATH"
 
       - name: Enable KVM
         run: |
