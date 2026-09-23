@@ -5,6 +5,8 @@ import android.content.Context;
 import java.io.IOException;
 
 import retrofit2.Response;
+import zm.mu.ict361lab.data.local.AppDatabase;
+import zm.mu.ict361lab.data.local.entity.AccountEntity;
 import zm.mu.ict361lab.data.remote.ApiService;
 import zm.mu.ict361lab.data.remote.Dtos;
 import zm.mu.ict361lab.data.remote.RetrofitClient;
@@ -20,11 +22,13 @@ import zm.mu.ict361lab.util.TokenStore;
  */
 public class AuthRepository {
 
+    private final Context appContext;
     private final ApiService api;
     private final TokenStore tokens;
     private final AppExecutors executors = AppExecutors.get();
 
     public AuthRepository(Context context) {
+        this.appContext = context.getApplicationContext();
         this.api = RetrofitClient.get(context);
         this.tokens = new TokenStore(context);
     }
@@ -61,8 +65,6 @@ public class AuthRepository {
                 tokens.clearDraft();
                 deliver(callback, Result.success(response.body()));
             } catch (IOException e) {
-                // Account verification has to happen online. The form itself is
-                // kept as a draft by the screen so nothing typed is lost.
                 deliver(callback, Result.offline());
             }
         });
@@ -70,11 +72,24 @@ public class AuthRepository {
 
     private void store(Dtos.AuthResponse auth, String identity) {
         if (auth == null) return;
-        // The account id is not in the token payload we can read here, so the
-        // student id (or the lecturer's email) scopes local data instead —
-        // either way, one signed-in identity, one local namespace.
         String scope = auth.student_id != null ? auth.student_id : identity;
         tokens.save(auth.token, auth.role, auth.student_id, scope);
+        rememberAccount(scope, auth.role, identity);
+    }
+
+    /**
+     * Caches this account locally so the device knows who has signed in here
+     * before, even while offline. Runs on diskIO — the same single thread
+     * every other Room write in this app uses, so writes stay ordered.
+     */
+    private void rememberAccount(String accountId, String role, String identity) {
+        AccountEntity account = new AccountEntity();
+        account.accountId = accountId;
+        account.role = role;
+        account.identity = identity;
+        account.createdAt = System.currentTimeMillis();
+        executors.diskIO().execute(() ->
+                AppDatabase.get(appContext).accountDao().upsert(account));
     }
 
     private <T> void deliver(Result.Callback<T> callback, Result<T> result) {
