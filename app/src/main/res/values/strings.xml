@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">ICT361Lab</string>
+    <string name="register">Register</string>
+    <string name="claim_code">Claim Code *</string>
+    <string name="full_name">Full Name *</string>
+    <string name="student_number">Student Number *</string>
+    <string name="programme">Programme *</string>
+    <string name="password">Password *</string>
+    <string name="create_account">Create Account</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="sync_now">Sync Now</string>
+    <string name="email">Email</string>
+    <string name="sign_in">Sign In</string>
+    <string name="students">Students</string>
+    <string name="search_hint">Search name or number…</string>
+    <string name="all">All</string>
+    <string name="unassigned">Unassigned</string>
+    <string name="add_student">+ Add Student</string>
+    <string name="error_required">This field is required</string>
+    <string name="error_name_length">Name must be 2–100 characters</string>
+    <string name="error_student_number">Student number must be exactly 9 digits</string>
+    <string name="error_duplicate_number">This student number is already registered</string>
+    <string name="error_group_full">This group is full (15/15)</string>
+    <string name="error_concurrent_edit">Someone else edited this record. Review the latest.</string>
+
+    <string name="default_student_number">202400018</string>
+    <string name="default_student_name">Chanda Mwaba</string>
+    <string name="edit_student">Edit Student</string>
+    <string name="lab_group">Lab Group</string>
+    <string name="group_count_hint">Group count: 14 / 15</string>
+    <string name="delete_student">Delete Student</string>
+    <string name="sync_status">Sync Status</string>
+    <string name="last_sync">Last sync: 2 minutes ago</string>
+    <string name="pending_operations">PENDING OPERATIONS (3)</string>
+    <string name="saved_locally">✓ Saved locally</string>
+    <string name="syncing">⟳ Syncing…</string>
+    <string name="action_required">⚠ Action required</string>
+    <string name="review">Review</string>
+    <string name="navigate_up">Navigate up</string>
+    <string name="hint_student_number_placeholder">e.g. 202400018</string>
+    <string name="hint_full_name_placeholder">Enter full name</string>
+    <string name="group_count_format">Group count: %s / 15</string>
+    <string name="save_student_record">Save student record</string>
+    <string name="sync_op_row1">Update name · Chanda Mwaba</string>
+    <string name="sync_op_row2">Assign group · Kelvin Mwape</string>
+    <string name="login_subtitle">Sign in to continue your portal session</string>
+    <string name="role_select_title">Portal Role Select</string>
+    <string name="sync_op_row3">Group G01 is full</string>
+
+    <!-- Strings for Login and Main Activities from previous steps -->
+    <string name="title_login">Login</string>
+    <string name="hint_username">Username/Email</string>
+    <string name="hint_password">Password</string>
+    <string name="role_student">Student</string>
+    <string name="role_lecturer">Lecturer</string>
+    <string name="btn_login">Login</string>
+    <string name="error_empty_fields">Please fill in all fields</string>
+    <string name="login_success">Login Successful as %s</string>
+    <string name="welcome_message">Welcome to the App!</string>
+</resources>
