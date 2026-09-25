@@ -9,29 +9,23 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import zm.mu.ict361lab.data.local.dao.AccountDao;
 import zm.mu.ict361lab.data.local.dao.LocalStudentDao;
 import zm.mu.ict361lab.data.local.dao.PendingOperationDao;
+import zm.mu.ict361lab.data.local.entity.AccountEntity;
 import zm.mu.ict361lab.data.local.entity.LocalStudentEntity;
 import zm.mu.ict361lab.data.local.entity.PendingOperationEntity;
 
-/**
- * The durable store. A ViewModel does not survive process death; this does.
- *
- * Note what is NOT here: fallbackToDestructiveMigration(). Dropping the
- * database on a schema change would throw away exactly what the brief asks us
- * to protect — saved work and the unsent queue. Both migrations below are
- * additive for that reason, and RoomMigrationTest replays 1 → 2 → 3 with real
- * data in place to prove it.
- */
 @Database(
-        entities = { LocalStudentEntity.class, PendingOperationEntity.class },
-        version = 3,
+        entities = { LocalStudentEntity.class, PendingOperationEntity.class, AccountEntity.class },
+        version = 4,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract LocalStudentDao studentDao();
     public abstract PendingOperationDao operationDao();
+    public abstract AccountDao accountDao();
 
     private static volatile AppDatabase instance;
 
@@ -43,7 +37,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                     context.getApplicationContext(),
                                     AppDatabase.class,
                                     "ict361_lab.db")
-                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
                             .build();
                 }
             }
@@ -51,19 +45,12 @@ public abstract class AppDatabase extends RoomDatabase {
         return instance;
     }
 
-    /** Test seam: an in-memory database for unit and instrumented tests. */
     public static AppDatabase inMemory(Context context) {
         return Room.inMemoryDatabaseBuilder(context, AppDatabase.class)
                 .allowMainThreadQueries()
                 .build();
     }
 
-    /**
-     * Version 1 to 2.
-     *
-     * Version 1 had nowhere to explain a rejected sync, so a conflicting row
-     * could only be flagged ACTION_REQUIRED with no reason attached.
-     */
     public static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
@@ -71,21 +58,6 @@ public abstract class AppDatabase extends RoomDatabase {
         }
     };
 
-    /**
-     * Version 2 to 3.
-     *
-     * Two columns, both needed by features version 2 could not express:
-     *
-     *  - pending_operation.server_snapshot. Activity E requires that on
-     *    conflict we "preserve the local proposal and show the current server
-     *    record for review". Version 2 recorded only the server's version
-     *    number, so the review screen could say something had changed but not
-     *    what.
-     *
-     *  - local_student.claim_code. A lecturer can now create a student while
-     *    offline, and the server issues the claim code when that CREATE syncs.
-     *    The lecturer has to read it out afterwards, so it has to be stored.
-     */
     public static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
@@ -95,11 +67,25 @@ public abstract class AppDatabase extends RoomDatabase {
     };
 
     /**
-     * The exact schema Room generated for version 1. The migration test builds
-     * a version 1 database from this, seeds it with a student carrying an
-     * unsent edit plus the operation that will deliver it, then migrates
-     * forward and checks that nothing was lost.
+     * Version 3 to 4.
+     *
+     * Adds the account table. Nothing about local_student or pending_operation
+     * changes — they already carried account_id as a plain scoping column —
+     * this migration only adds a new table alongside them, so it is additive
+     * in the same spirit as the two before it.
      */
+    public static final Migration MIGRATION_3_4 = new Migration(3, 4) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `account` (" +
+                            "`account_id` TEXT NOT NULL, `role` TEXT, `identity` TEXT, " +
+                            "`created_at` INTEGER NOT NULL, `last_sync_at` TEXT, " +
+                            "PRIMARY KEY(`account_id`))"
+            );
+        }
+    };
+
     public static final String[] SCHEMA_V1 = {
             "CREATE TABLE IF NOT EXISTS `local_student` (" +
                     "`student_id` TEXT NOT NULL, `student_number` TEXT, `student_name` TEXT, " +
