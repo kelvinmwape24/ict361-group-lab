@@ -19,6 +19,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.IOException;
+
 import zm.mu.ict361lab.data.local.AppDatabase;
 import zm.mu.ict361lab.data.local.entity.AccountEntity;
 import zm.mu.ict361lab.data.local.entity.LocalStudentEntity;
@@ -47,7 +49,7 @@ public class RoomMigrationTest {
     }
 
     @Test
-    public void migratingFromV1KeepsStudentsAndTheQueue() {
+    public void migratingFromV1KeepsStudentsAndTheQueue() throws IOException {
         seedVersion1();
 
         AppDatabase db = Room.databaseBuilder(context, AppDatabase.class, DB_NAME)
@@ -107,7 +109,7 @@ public class RoomMigrationTest {
      * it, and confirm the row is still there.
      */
     @Test
-    public void v4AccountTableWorksAndSurvivesReopen() {
+    public void v4AccountTableWorksAndSurvivesReopen() throws IOException {
         seedVersion1();
 
         AppDatabase db = Room.databaseBuilder(context, AppDatabase.class, DB_NAME)
@@ -146,7 +148,7 @@ public class RoomMigrationTest {
         reopened.close();
     }
 
-    private void seedVersion1() {
+    private void seedVersion1() throws IOException {
         SupportSQLiteOpenHelper.Configuration config =
                 SupportSQLiteOpenHelper.Configuration.builder(context)
                         .name(DB_NAME)
