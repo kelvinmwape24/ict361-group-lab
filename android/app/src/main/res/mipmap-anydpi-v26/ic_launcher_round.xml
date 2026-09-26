@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive launcher icon, API 26+.
+
+  Background is a flat near-white rather than MU blue: the crest contains both
+  brand blue and brand red, and putting it on blue loses half of it. The
+  foreground crest sits inside the 66dp safe circle of the 108dp canvas, so no
+  launcher mask can clip the shield.
+
+  API 24 and 25 fall back to the PNGs in mipmap-*dpi.
+-->
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@drawable/ic_launcher_background" />
+    <background android:drawable="@color/ic_launcher_background" />
     <foreground android:drawable="@drawable/ic_launcher_foreground" />
 </adaptive-icon>

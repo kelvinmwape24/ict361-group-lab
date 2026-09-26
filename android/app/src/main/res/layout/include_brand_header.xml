@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The crest lock-up on the sign-in and sign-up screens.
+
+  One file, <include>d by both, so the header cannot drift between the two
+  screens as they are edited.
+
+  The crest is decorative here: the wording beside it already says which
+  university, so importantOnlyForAccessibility keeps a screen reader from
+  announcing it twice.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/brand_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingBottom="8dp">
+
+    <ImageView
+        android:id="@+id/brand_crest"
+        android:layout_width="46dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/mu_crest"
+        android:scaleType="fitCenter"
+        android:importantForAccessibility="no" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/brand_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/brand_university"
+            android:textAppearance="@style/TextAppearance.ICT361.BrandName" />
+
+        <TextView
+            android:id="@+id/brand_school"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="@string/brand_school"
+            android:textAppearance="@style/TextAppearance.ICT361.BrandSchool" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The splash on API 24-30. Set as android:windowBackground on
+  Theme.ICT361Lab.Splash, so the system draws it the instant the process
+  starts — before any of our code runs.
+
+  Deliberately NOT a splash Activity: one of those sits in the back stack,
+  costs a whole extra frame, and has to be finished by hand. API 31+ uses the
+  platform splash screen instead; see values-v31/themes.xml.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/mu_blue" />
+    <item android:gravity="center">
+        <bitmap
+            android:src="@drawable/mu_crest"
+            android:gravity="center" />
+    </item>
+</layer-list>

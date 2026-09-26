@@ -135,4 +135,14 @@
     <!-- Conflict review -->
     <string name="fmt_version">version %1$d</string>
     <string name="msg_conflict_choose">Choose which version to keep.</string>
+
+    <!-- ── Brand lock-up on the auth screens ────────────────────────── -->
+    <string name="brand_university">MULUNGUSHI UNIVERSITY</string>
+    <string name="brand_school">School of Engineering and Technology</string>
+
+    <!-- ── Auth screens, revised after usability testing ─────────────── -->
+    <string name="label_username">Student number or username</string>
+    <string name="subtitle_sign_in">Sign in to continue.</string>
+    <string name="subtitle_register">Register yourself as a student.</string>
+    <string name="action_have_account">I already have an account</string>
 </resources>

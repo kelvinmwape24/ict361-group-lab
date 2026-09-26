@@ -1,23 +1,91 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Theme.ICT361Lab" parent="Theme.Material3.DayNight">
         <item name="colorPrimary">@color/mu_blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryContainer">@color/mu_blue_light</item>
-        <item name="colorError">@color/mu_red</item>
+        <item name="colorOnPrimaryContainer">@color/mu_blue_dark</item>
+        <item name="colorSecondary">@color/mu_blue_dark</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorSurfaceVariant">@color/mu_blue_surface</item>
+        <item name="colorOnSurface">@color/ink</item>
+        <item name="colorOnSurfaceVariant">@color/ink_muted</item>
+        <item name="colorOutline">@color/hairline</item>
+        <!-- mu_red_text, not mu_red: error text must clear 4.5:1 on white. -->
+        <item name="colorError">@color/mu_red_text</item>
+        <item name="android:statusBarColor">@color/mu_blue_dark</item>
         <!-- Touch targets stay at least 48dp, and text scales with the system
              setting: the app must stay usable at 200% text size. -->
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <!--
+      The launch theme. MainActivity wears this in the manifest and switches to
+      Theme.ICT361Lab in onCreate, so the crest is on screen from the very
+      first frame without a splash Activity sitting in the back stack.
+      API 31+ overrides this in values-v31/themes.xml.
+    -->
+    <style name="Theme.ICT361Lab.Splash" parent="Theme.ICT361Lab">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@color/mu_blue_dark</item>
+        <item name="android:navigationBarColor">@color/mu_blue_dark</item>
     </style>
 
     <style name="Widget.ICT361.Field" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">12dp</item>
+        <item name="boxStrokeColor">@color/mu_blue</item>
+        <item name="hintTextColor">@color/mu_blue_dark</item>
+        <item name="boxBackgroundColor">@color/mu_field</item>
+        <item name="boxCornerRadiusTopStart">11dp</item>
+        <item name="boxCornerRadiusTopEnd">11dp</item>
+        <item name="boxCornerRadiusBottomStart">11dp</item>
+        <item name="boxCornerRadiusBottomEnd">11dp</item>
     </style>
 
     <style name="Widget.ICT361.Button" parent="Widget.Material3.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">48dp</item>
+        <item name="cornerRadius">11dp</item>
     </style>
+
+    <!--
+      The mockup's "sign up" control. Outlined rather than a bare text button:
+      the mockup drew it as a bordered pill, and an outlined button is the
+      Material equivalent. Whether users find it is an open question for
+      Activity A testing, not something measured yet.
+    -->
+    <style name="Widget.ICT361.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="cornerRadius">11dp</item>
+        <item name="strokeColor">@color/mu_red</item>
+        <item name="android:textColor">@color/mu_red</item>
+    </style>
+
+    <!-- The crest lock-up at the top of the auth screens. -->
+    <style name="TextAppearance.ICT361.BrandName" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/mu_blue</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="TextAppearance.ICT361.BrandSchool" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textColor">@color/ink_muted</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.ICT361.ScreenTitle" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textColor">@color/mu_blue_dark</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.ICT361.ScreenSubtitle" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/ink_muted</item>
+    </style>
+
 </resources>

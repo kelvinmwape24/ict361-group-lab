@@ -1,0 +1,12 @@
+# ── Compatibility variant: AGP 8.5.2 ───────────────────────────────────────
+# Use this only if Android Studio refuses to sync the main project because
+# AGP 8.11.2 is newer than the IDE. Copy over android/gradle/libs.versions.toml.
+#
+# AGP 8.5.2 requires Gradle 8.7 and JDK 17. Copy the matching
+# gradle-wrapper.properties and app-build.gradle.kts from this folder too —
+# all three must move together.
+[versions]
+agp = "8.5.2"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }

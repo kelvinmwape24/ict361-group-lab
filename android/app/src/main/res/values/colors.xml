@@ -1,10 +1,52 @@
 <resources>
-    <color name="mu_blue">#FF1B3A8C</color>
-    <color name="mu_blue_dark">#FF122A66</color>
-    <color name="mu_blue_light">#FFD7E0F6</color>
-    <color name="mu_red">#FFB3211F</color>
-    <color name="mu_amber">#FF8A5A00</color>
-    <color name="mu_green">#FF116B55</color>
+    <!--
+      The app's chrome takes the navy and red from the supplied design flow.
+      Both were sampled from those mockups and both clear WCAG AAA on white,
+      which is why these exact values are used:
+
+        mu_blue  #1F4B96   8.38:1 on white
+        mu_red   #A31D1C   7.64:1 on white
+
+      For contrast, the first mockup paired red #E53935 placeholders on a blue
+      #4A7BC8 fill. That measures 1.00:1 — the two colours have identical
+      relative luminance, so the text is not faint, it is invisible to the
+      algorithm. See docs/ux/design_decisions.md.
+
+      The crest asset keeps its own colours in both themes; it is a fixed
+      image, not a tinted drawable, so the shield's violet-blue and red are
+      unaffected by anything here.
+    -->
+    <color name="mu_blue">#FF1F4B96</color>
+    <color name="mu_blue_dark">#FF16305E</color>
+    <color name="mu_blue_light">#FFE4EBF7</color>
+    <color name="mu_blue_surface">#FFF1F4FA</color>
+    <color name="mu_field">#FFF2F5FA</color>
+
+    <color name="mu_red">#FFA31D1C</color>
+    <color name="mu_red_text">#FF8E1917</color>
+
+    <color name="mu_amber">#FF8A5600</color>
+    <color name="mu_green">#FF0F6B52</color>
+
+    <color name="ink">#FF131722</color>
+    <color name="ink_muted">#FF5B6273</color>
+    <color name="hairline">#FFE3E7F0</color>
+
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
+
+    <!--
+      Night theme. #1F4B96 on near-black measures 1.9:1 and fails badly, so
+      the navy is lightened rather than reused.
+    -->
+    <color name="mu_blue_on_dark">#FF8FB2EC</color>
+    <color name="mu_red_on_dark">#FFEE8A86</color>
+    <color name="surface_dark">#FF171B25</color>
+    <color name="surface_dark_variant">#FF212533</color>
+    <color name="ink_on_dark">#FFECEEF4</color>
+    <color name="ink_muted_on_dark">#FFB3B9C7</color>
+    <color name="hairline_dark">#FF2B3040</color>
+
+    <!-- Adaptive launcher icon background. Near-white so the crest reads. -->
+    <color name="ic_launcher_background">#FFF7F8FD</color>
 </resources>

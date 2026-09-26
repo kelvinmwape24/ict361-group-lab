@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The splash icon for API 31+. The platform masks this to a circle and only
+  the inner two-thirds is guaranteed visible, so the crest is inset rather
+  than filling the drawable — otherwise the shield's points get cut off.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/mu_crest"
+        android:gravity="center"
+        android:top="24dp"
+        android:bottom="24dp"
+        android:left="24dp"
+        android:right="24dp" />
+</layer-list>

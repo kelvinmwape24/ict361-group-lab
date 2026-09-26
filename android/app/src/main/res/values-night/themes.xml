@@ -1,8 +1,49 @@
 <resources>
+    <!--
+      Night theme. The crest keeps its own colours (it is a fixed asset), so
+      the surfaces move and the brand hue lightens enough to stay legible on
+      a dark ground: #4E52B3 on near-black is only 2.3:1, which fails.
+    -->
     <style name="Theme.ICT361Lab" parent="Theme.Material3.DayNight">
-        <item name="colorPrimary">@color/mu_blue_light</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <item name="colorError">#FFFF8B80</item>
+        <item name="colorPrimary">@color/mu_blue_on_dark</item>
+        <item name="colorOnPrimary">@color/ink</item>
+        <item name="colorPrimaryContainer">@color/mu_blue_dark</item>
+        <item name="colorOnPrimaryContainer">@color/mu_blue_light</item>
+        <item name="colorSecondary">@color/mu_blue_light</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorSurfaceVariant">@color/surface_dark_variant</item>
+        <item name="colorOnSurface">@color/ink_on_dark</item>
+        <item name="colorOnSurfaceVariant">@color/ink_muted_on_dark</item>
+        <item name="colorOutline">@color/hairline_dark</item>
+        <item name="colorError">@color/mu_red_on_dark</item>
+        <item name="android:statusBarColor">@color/surface_dark</item>
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Theme.ICT361Lab.Splash" parent="Theme.ICT361Lab">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@color/mu_blue_dark</item>
+        <item name="android:navigationBarColor">@color/mu_blue_dark</item>
+    </style>
+
+    <style name="TextAppearance.ICT361.BrandName" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/mu_blue_on_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="TextAppearance.ICT361.BrandSchool" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textColor">@color/ink_muted_on_dark</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.ICT361.ScreenTitle" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textColor">@color/mu_blue_light</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.ICT361.ScreenSubtitle" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/ink_muted_on_dark</item>
     </style>
 </resources>
