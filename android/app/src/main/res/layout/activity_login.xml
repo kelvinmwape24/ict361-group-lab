@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome Back!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"/>
+    <EditText
+        android:id="@+id/inputStudentId"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Student ID"
+        android:inputType="number"
+        android:layout_marginTop="24dp"/>
+    <EditText
+        android:id="@+id/inputPassword"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginTop="16dp"/>
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Login"
+        android:layout_marginTop="24dp"/>
+    <Button
+        android:id="@+id/btnRegisterNow"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Register Now"
+        android:layout_marginTop="8dp"/>
+</LinearLayout>
