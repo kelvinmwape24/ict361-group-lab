@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="24dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -15,12 +18,23 @@
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Join the student portal"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"/>
+
         <EditText
             android:id="@+id/inputName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:hint="Full Name"
-            android:layout_marginTop="24dp"/>
+            android:inputType="textPersonName"
+            android:layout_marginTop="32dp"/>
+
         <EditText
             android:id="@+id/inputNumber"
             android:layout_width="match_parent"
@@ -29,6 +43,7 @@
             android:inputType="number"
             android:maxLength="9"
             android:layout_marginTop="16dp"/>
+
         <EditText
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
@@ -36,17 +51,33 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:layout_marginTop="16dp"/>
+
         <EditText
             android:id="@+id/inputClaimCode"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:hint="Claim Code"
             android:layout_marginTop="16dp"/>
+
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="Register"
             android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account?"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"/>
+
+        <Button
+            android:id="@+id/btnGoLogin"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Log In"
+            android:layout_marginTop="8dp"/>
     </LinearLayout>
 </ScrollView>
